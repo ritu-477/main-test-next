@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import Swal from "sweetalert2"; // Import SweetAlert2
+import Swal from "sweetalert2"; 
 
 const LogInForm = () => {
   const router = useRouter();
@@ -58,8 +58,6 @@ const LogInForm = () => {
       });
       return;
     }
-
-    // Success Alert
     Swal.fire({
       icon: "success",
       title: "Login Successful",
@@ -69,8 +67,6 @@ const LogInForm = () => {
     });
 
     localStorage.setItem("isAuthenticated", "true");
-
-    // Redirect after a slight delay
     setTimeout(() => {
       router.push("/dashboard");
     }, 2000);
@@ -81,12 +77,7 @@ const LogInForm = () => {
       <div className="max-w-[1597px] mx-auto lg:px-[27px] max-lg:px-[35px]">
         <div className="flex justify-end lg:gap-[120px] flex-wrap max-2xl:justify-center">
           <div className="lg:pt-5">
-            <Image
-              src="/assets/images/webp/logo-image.webp"
-              alt="page-logo"
-              width={163}
-              height={61.71}
-              className="pointer-events-none pb-[138.9px] max-md:pb-[90px]"
+            <Image src="/assets/images/webp/logo-image.webp" alt="page-logo"width={163} height={61.71}className="pointer-events-none pb-[138.9px] max-md:pb-[90px]"
             />
             <form onSubmit={handleSubmit} className="max-w-[456px]">
               <h2 className="text-3xl leading-custom-2xl font-semibold">
@@ -96,34 +87,19 @@ const LogInForm = () => {
                 Welcome back! Please enter your details.
               </p>
               <div className="pb-[18px]">
-                <label
-                  htmlFor="email"
-                  className="font-medium text-base leading-5 text-dark-black pb-[6px]"
-                >
+                <label htmlFor="email"
+                  className="font-medium text-base leading-5 text-dark-black pb-[6px]">
                   Email
                 </label>
-                <input
-                  type="email"
-                  id="email"
-                  value={email}
-                  placeholder="Email"
-                  onChange={(e) => setEmail(e.target.value)}
+                <input type="email" id="email"value={email} placeholder="Email"  onChange={(e) => setEmail(e.target.value)}
                   className="px-[14px] py-5 outline-none w-[456px] rounded-lg border border-light-gray max-md:w-[320px] shadow-[0_1px_2px_0_#1018280D] placeholder:text-custom-gray text-custom-gray"
                 />
               </div>
               <div>
-                <label
-                  htmlFor="password"
-                  className="font-medium text-base leading-5 text-dark-black pb-[6px]"
-                >
+                <label htmlFor="password" className="font-medium text-base leading-5 text-dark-black pb-[6px]">
                   Password
                 </label>
-                <input
-                  type="password"
-                  id="password"
-                  value={password}
-                  placeholder="••••••••"
-                  onChange={(e) => setPassword(e.target.value)}
+                <input type="password" id="password" value={password} placeholder="••••••••"onChange={(e) => setPassword(e.target.value)}
                   className="px-[14px] py-5 outline-none w-[456px] rounded-lg border border-light-gray max-md:w-[320px] shadow-[0_1px_2px_0_#1018280D] placeholder:text-custom-gray text-custom-gray"
                 />
               </div>
@@ -143,9 +119,7 @@ const LogInForm = () => {
                   Forgot password
                 </Link>
               </div>
-              <button
-                type="submit"
-                className="pt-[9px] outline-none pb-[10px] text-sm leading-6 bg-dark-black text-white w-full mt-6 hover:bg-green-800 transition-all duration-300 rounded-[9px]"
+              <button type="submit" className="pt-[9px] outline-none pb-[10px] text-sm leading-6 bg-dark-black text-white w-full mt-6 hover:bg-green-800 transition-all duration-300 rounded-[9px]"
               >
                 Sign In
               </button>

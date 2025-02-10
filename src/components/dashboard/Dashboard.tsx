@@ -61,7 +61,7 @@ const Dashboard = () => {
         </button>
       </div>
       <div className="w-full pt-20">
-        <div className="bg-blue-300 max-md:flex max-md:items-center max-md:gap-5 min-h-20 py-5 px-3 w-full fixed top-0">
+        <div className="bg-blue-300 max-md:flex max-md:items-center max-md:gap-5 min-h-20 py-5 px-3 w-full fixed top-0 z-50">
           <button
             onClick={handleOpen}
             className="md:hidden max-md:size-6 relative !z-50 max-md:flex max-md:justify-between max-md:flex-col overflow-hidden"
