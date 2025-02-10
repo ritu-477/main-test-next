@@ -1,131 +1,171 @@
 "use client";
-
 import { useState, useEffect } from "react";
-import { useRouter } from "next/navigation";
-import { useForm } from "react-hook-form";
 import Link from "next/link";
 import Image from "next/image";
+import Swal from "sweetalert2";
 
 const Dashboard = () => {
-  const router = useRouter();
-  const { register, handleSubmit, formState: { errors } } = useForm();
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [remember, setRemember] = useState(false); // ✅ Fix: Added missing state
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [remember, setRemember] = useState(false);
+    const [error, setError] = useState("");
 
-  useEffect(() => {
-    if (typeof window !== "undefined") { 
-      const isAuthenticated = localStorage.getItem("isAuthenticated");
-      if (isAuthenticated && window.location.pathname !== "/dashboard") { // ✅ Fix: Corrected pathname check
-        router.push("/dashboard");
-      }
-    }
-  }, [router]);
+    useEffect(() => {
+        localStorage.setItem("email", email);
+    }, [email]);
 
-  // Function to handle form submission
-  const onSubmit = (data: { email: string; password: string }) => {
-    console.log("Submitted Data:", data);
+    useEffect(() => {
+        localStorage.setItem("password", password);
+    }, [password]);
 
-    localStorage.setItem("isAuthenticated", "true");
-    setIsAuthenticated(true);
-    router.push("/dashboard");
-  };
+    useEffect(() => {
+        localStorage.setItem("remember", remember.toString());
+    }, [remember]);
 
-  return (
-    <div className="h-screen max-w-[1597px] mx-auto bg-light-white">
-      <div className="container py-[30px] xl:ps-[235px] xl:pr-[27px] max-w-[1597px] mx-auto px-5">
-        <div className="flex gap-[120px]">
-          <div className="xl:w-[456px] flex flex-col w-full">
-            {/* Logo Section */}
-            <div className="max-w-[163px] pt-5 pb-[138.92px]">
-              <Link href="/">
-                <Image 
-                  src="/assets/images/webp/logo-image.webp" 
-                  alt="Logo Image" 
-                  width={163} 
-                  height={31.71} 
-                />
-              </Link>
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault();
+        setError("");
+
+        const emailSyntax = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (!email || !password) {
+            Swal.fire({
+                icon: "error",
+                title: "Oops...",
+                text: "Email and password are required!",
+            });
+            return;
+        }
+
+        if (!emailSyntax.test(email)) {
+            Swal.fire({
+                icon: "error",
+                title: "Invalid Email",
+                text: "Please enter a valid email format.",
+            });
+            return;
+        }
+
+        if (password.length < 6) {
+            Swal.fire({
+                icon: "error",
+                title: "Weak Password",
+                text: "Password must have at least 6 characters.",
+            });
+            return;
+        }
+
+        localStorage.setItem("isAuthenticated", "true");
+        Swal.fire({
+            icon: "success",
+            title: "Login Successful",
+            text: "Redirecting to dashboard...",
+            timer: 2000,
+            showConfirmButton: false,
+        }).then(() => {
+            window.location.href = "/dashboard";
+        });
+    };
+
+    return (
+        <div className="py-[30px] max-lg:pt-8">
+            <div className="max-w-[1440px] mx-auto px-4 max-lg:px-[35px]">
+                <div className="flex justify-between flex-wrap max-lg:justify-center">
+                    <div className="lg:pt-5">
+                        <Image
+                            src="/assets/images/webp/logo-image.webp"
+                            alt="page-logo"
+                            width={163}
+                            height={61.71}
+                            className="pointer-events-none pb-[138.9px] max-md:pb-[90px]"
+                        />
+                        <form onSubmit={handleSubmit} className="max-w-[456px]">
+                            <h2 className="ftext-3xl leading-custom-2xl font-semibold">
+                                Welcome Back
+                            </h2>
+                            <p className="text-sm leading-custom-xl text-custom-gray font-normal pb-[31px]">
+                                Welcome back! Please enter your details.
+                            </p>
+                            <div className="pb-[18px]">
+                                <label htmlFor="email" className="font-medium text-base leading-5 text-dark-black pb-[6px]">
+                                    Email
+                                </label>
+                                <input
+                                    type="email"
+                                    id="email"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    placeholder="Email"
+                                    className="px-[14px] py-5 outline-none w-[456px] rounded-lg border border-light-gray max-md:w-[320px] shadow-[0_1px_2px_0_#1018280D] placeholder:text-custom-gray text-custom-gray"
+                                />
+                            </div>
+                            <div>
+                                <label htmlFor="password" className="font-medium text-base leading-5 text-dark-black pb-[6px]">
+                                    Password
+                                </label>
+                                <input
+                                    type="password"
+                                    id="password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    className="px-[14px] py-5 outline-none w-[456px] rounded-lg border border-light-gray max-md:w-[320px] shadow-[0_1px_2px_0_#1018280D] placeholder:text-custom-gray text-custom-gray"
+                                />
+                            </div>
+                            <div className="flex md:items-center justify-between pt-[18px] max-md:flex-col max-md:gap-[14px]">
+                                <label htmlFor="remember" className="inline-flex items-center gap-3">
+                                    <input
+                                        type="checkbox"
+                                        id="remember"
+                                        checked={remember}
+                                        onChange={(e) => setRemember(e.target.checked)}
+                                        className="text-custom-blue custom-checkbox size-5 !border-light-gray rounded-[6px]"
+                                    />
+                                    <span className="font-inter leading-6 text-very-light-gray">
+                                        Remember for 30 days
+                                    </span>
+                                </label>
+                                <p className="text-custom-dark-blue font-inter leading-6 text-base">
+                                    Forgot password
+                                </p>
+                            </div>
+                            <button
+                                type="submit"
+                                className="pt-[9px] outline-none pb-[10px] bg-dark-black text-white w-full mt-6 hover:bg-green-500 transition-all duration-300 rounded-[9px]"
+                            >
+                                Sign In
+                            </button>
+                            <label className="cursor-pointer">
+                                <input type="button" className="hidden" onClick={() => console.log("Google Sign-In")} />
+                                <div className="pt-[11px] pb-3 bg-white w-full mt-[6px] rounded-[9px] border border-light-gray flex items-center gap-[10px] justify-center">
+                                    <Image
+                                        src="/assets/images/webp/google-icon.webp"
+                                        alt="google-icon"
+                                        width={20}
+                                        height={20}
+                                        className="mr-2"
+                                    />
+                                    <p className="text-sm leading-5 text-custom-black font-medium">Sign in with Google</p>
+                                </div>
+                            </label>
+                            <p className="font-inter leading-6 text-base md:text-center pt-[18px] text-custom-blue">
+                                Don’t have an account?{" "}
+                                <Link href="/" className="text-custom-dark-blue">
+                                    Sign up
+                                </Link>
+                            </p>
+                        </form>
+                    </div>
+                    <Image
+                        src="/assets/images/webp/hero-image.webp"
+                        alt="hero-image"
+                        width={759}
+                        height={899}
+                        className="pointer-events-none max-lg:pt-24"
+                    />
+                </div>
             </div>
-
-            <form onSubmit={handleSubmit(onSubmit)}>
-              <h2 className="text-3xl leading-custom-2xl font-semibold">Welcome Back</h2>
-              <p className="text-sm leading-custom-xl text-custom-gray font-normal pb-[31px]">Welcome back! Please enter your details.</p>
-
-              {/* Email Input */}
-              <label className="block font-medium text-base leading-5 text-dark-black pb-[6px]">Email</label>
-              <input
-                {...register("email", { 
-                  required: "Email is required", 
-                  pattern: { value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/, message: "Invalid email format" }
-                })}
-                className="w-full outline-none py-5 px-4 border border-gray-300 rounded-lg mb-3 bg-white text-sm"
-                placeholder="Email"
-                type="email"
-              />
-              {errors.email && <p className="text-red-500 text-sm">{errors.email.message}</p>}
-
-              {/* Password Input */}
-              <label className="block font-medium text-base leading-5 text-dark-black pb-[6px]">Password</label>
-              <input
-                {...register("password", { 
-                  required: "Password is required", 
-                  minLength: { value: 6, message: "Password must be at least 6 characters" }
-                })}
-                className="w-full outline-none py-5 px-4 border border-gray-300 rounded-lg mb-3 bg-white text-sm"
-                type="password"
-                placeholder="Password"
-              />
-              {errors.password && <p className="text-red-500 text-sm">{errors.password.message}</p>}
-
-              <div className="flex justify-between items-center mb-4">
-                <label className="flex items-center space-x-2 text-gray-600">
-                  <input
-                    type="checkbox"
-                    checked={remember}
-                    onChange={() => setRemember(!remember)}
-                    className="w-4 h-4 border-gray-300 rounded focus:ring-black"
-                  />
-                  <span>Remember for 30 days</span>
-                </label>
-                <Link href="/forgot-password" className="text-blue-500 text-sm">
-                  Forgot password?
-                </Link>
-              </div>
-              <button className="w-full bg-black text-white py-3 rounded-lg font-medium">
-                Sign In
-              </button>
-
-              <button className="w-full mt-3 flex items-center justify-center border py-3 rounded-lg font-medium">
-                <Image
-                  src="/assets/images/webp/google-icon.webp" 
-                  alt="Google Icon"
-                  width={20}
-                  height={20}
-                  className="mr-2"
-                />
-                Sign in with Google
-              </button>
-              <p className="text-center text-gray-600 mt-4">
-                Don’t have an account?{" "}
-                <Link href="/sign-up" className="text-blue-500 font-medium">
-                  Sign up
-                </Link>
-              </p>
-            </form>
-          </div>
-          <div className="xl:w-[759px] w-full rounded-[20px] h-[899px]">
-            <Image 
-              src="/assets/images/webp/hero-image.webp" 
-              alt="Hero Image" 
-              width={759} 
-              height={899} 
-              className="rounded-lg w-full h-auto"
-            />
-          </div>
         </div>
-      </div>
-    </div>
-  );
+    );
 };
 
 export default Dashboard;

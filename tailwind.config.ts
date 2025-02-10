@@ -14,6 +14,8 @@ export default {
         "custom-gray":"#656566",
         "dark-black":"#14191c",
         "light-gray":"#d0d5dd",
+        "custom-blue":"#475467",  
+        "custom-dark-blue":"#007BFF",  
       },
       lineHeight:{
         "custom-xl":"30px",
