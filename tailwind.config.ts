@@ -9,8 +9,18 @@ export default {
   theme: {
     extend: {
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        "light-white":"#FAFAFF",
+        "custom-black":"#2e2f37",
+        "custom-gray":"#656566",
+        "dark-black":"#14191c",
+        "light-gray":"#d0d5dd",
+      },
+      lineHeight:{
+        "custom-xl":"30px",
+       "custom-2xl":"58.45px"
+      },
+      fontFamily:{
+        "inter":"'inter',sens-serif"
       },
     },
   },

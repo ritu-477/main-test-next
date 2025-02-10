@@ -2,24 +2,24 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Smerse",
-  description: "FOR A WHEALTHIER LIFESTYLE. ANYTIME, ANYWHERE",
+  title: "Lyrics Web",
+  description: "Welcome back! Please enter your details.",
   openGraph: {
-    title: "Smerse",
-    description: "FOR A WHEALTHIER LIFESTYLE. ANYTIME, ANYWHERE",
+    title: "Lyrics Web",
+    description: "Welcome back! Please enter your details.",
     images: [
       {
         url: "/meta-image.png",
         width: 800,
         height: 600,
-        alt: "Smerse Branding Image",
+        alt: "Lyrics Web Branding Image",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Smerse",
-    description: "FOR A WHEALTHIER LIFESTYLE. ANYTIME, ANYWHERE",
+    title: "Lyrics Web",
+    description: "Welcome back! Please enter your details.",
     images: ["/meta-image.png"],
   },
 };
