@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import CalendlyCustom from "./CalendlyCustom";
 import UploadImages from "./UploadImages";
-import Dummy from "./Dummy";
+import QuestionOne from "./QuestionOne";
 import { QUESTION_LIST } from "@/utils/helper";
 
 const Dashboard = () => {
@@ -87,7 +87,7 @@ const Dashboard = () => {
           </h1>
         </div>
         {page === "button-1" ? (
-          <Dummy />
+          <QuestionOne/>
         ) : page === "button-2" ? (
           <CalendlyCustom />
         ) : page === "button-3" ? (
@@ -97,5 +97,4 @@ const Dashboard = () => {
     </div>
   );
 };
-
 export default Dashboard;

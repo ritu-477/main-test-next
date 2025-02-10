@@ -17,7 +17,7 @@ export default {
         "custom-blue":"#475467",  
         "custom-dark-blue":"#007BFF",  
       },
-      lineHeight:{
+      lineHeight:{  
         "custom-xl":"30px",
        "custom-2xl":"58.45px"
       },
