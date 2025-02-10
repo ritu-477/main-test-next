@@ -73,7 +73,7 @@ const LogInForm = () => {
   };
 
   return (
-    <div className="py-[30px] max-lg:pt-8">
+    <div className="py-[30px] max-lg:pt-8 bg-light-white">
       <div className="max-w-[1597px] mx-auto lg:px-[27px] max-lg:px-[35px]">
         <div className="flex justify-end lg:gap-[120px] flex-wrap max-2xl:justify-center">
           <div className="lg:pt-5">
@@ -128,7 +128,7 @@ const LogInForm = () => {
                 />
                 <p className="text-sm leading-5 text-custom-black font-medium">Sign in with Google</p>
               </button>
-              <p className="font-inter leading-6 text-base md:text-center pt-[18px] text-custom-blue">
+              <p className="font-inter leading-6 flex gap-[10px] text-base md:text-center pt-[18px] text-custom-blue">
                 Don’t have an account?{" "}
                 <Link href="/" className="text-custom-dark-blue">
                   Sign up
