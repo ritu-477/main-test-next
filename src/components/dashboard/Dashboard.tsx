@@ -55,13 +55,13 @@ const Dashboard = () => {
         </div>
         <button
           onClick={handleLogout}
-          className="bg-red-500 py-2 px-3 rounded-lg text-white"
+          className="bg-slate-500 py-2 px-3 rounded-lg text-white"
         >
           Logout
         </button>
       </div>
       <div className="w-full pt-20">
-        <div className="bg-yellow-500 max-md:flex max-md:items-center max-md:gap-5 min-h-20 py-5 px-3 w-full fixed top-0">
+        <div className="bg-blue-300 max-md:flex max-md:items-center max-md:gap-5 min-h-20 py-5 px-3 w-full fixed top-0">
           <button
             onClick={handleOpen}
             className="md:hidden max-md:size-6 relative !z-50 max-md:flex max-md:justify-between max-md:flex-col overflow-hidden"
