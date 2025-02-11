@@ -15,8 +15,8 @@
           ];
           
       return (
-        <div className='bg-gray-400 py-12'>
-        <p className='text-3xl text-center'>
+        <div className='flex justify-center items-center bg-gray-400 container py-12 h-screen'>
+        <p className='text-3xl text-white text-center'>
           {Question[0].list.data[0].title} {Question[0].list.data[0].options[0]}
         </p>
       </div>
