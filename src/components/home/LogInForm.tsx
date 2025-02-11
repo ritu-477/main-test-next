@@ -73,7 +73,7 @@ const LogInForm = () => {
   };
 
   return (
-    <div className="py-[30px] max-lg:pt-8 bg-light-white">
+    <div className="py-[30px] max-lg:pb-24 bg-light-white">
       <div className="max-w-[1597px] mx-auto lg:px-[27px] max-lg:px-[35px]">
         <div className="flex justify-end lg:gap-[120px] flex-wrap max-2xl:justify-center">
           <div className="lg:pt-5">
@@ -86,7 +86,7 @@ const LogInForm = () => {
               <p className="text-sm leading-custom-xl text-custom-gray font-normal pb-[31px]">
                 Welcome back! Please enter your details.
               </p>
-              <div className="pb-[18px]">
+              <div className="pb-[18px] flex flex-col">
                 <label htmlFor="email"
                   className="font-medium text-base leading-5 text-dark-black pb-[6px]">
                   Email
@@ -95,7 +95,7 @@ const LogInForm = () => {
                   className="px-[14px] py-5 outline-none w-[456px] rounded-lg border border-light-gray max-md:w-[320px] shadow-[0_1px_2px_0_#1018280D] placeholder:text-custom-gray text-custom-gray"
                 />
               </div>
-              <div>
+              <div className="flex flex-col">
                 <label htmlFor="password" className="font-medium text-base leading-5 text-dark-black pb-[6px]">
                   Password
                 </label>
@@ -114,7 +114,7 @@ const LogInForm = () => {
                   <span className="font-inter leading-6 text-custom-blue">
                     Remember for 30 days
                   </span>
-                </label>
+                </label>                                                                      
                 <Link href="/" className="text-custom-dark-blue leading-6 text-base font-inter">
                   Forgot password
                 </Link>
@@ -128,7 +128,7 @@ const LogInForm = () => {
                 />
                 <p className="text-sm leading-5 text-custom-black font-medium">Sign in with Google</p>
               </button>
-              <p className="font-inter leading-6 flex gap-[10px] text-base md:text-center pt-[18px] text-custom-blue">
+              <p className="font-inter lg:justify-center leading-6 flex gap-[10px] text-base md:text-center pt-[18px] text-custom-blue">
                 Don’t have an account?{" "}
                 <Link href="/" className="text-custom-dark-blue">
                   Sign up
@@ -136,7 +136,7 @@ const LogInForm = () => {
               </p>
             </form>
           </div>
-          <Image src="/assets/images/webp/hero-image.webp" alt="hero-image" width={759} height={899}className="pointer-events-none max-lg:pt-24"
+          <Image src="/assets/images/webp/hero-image.webp" alt="hero-image" width={759} height={899}className="pointer-events-none xl:max-w-[759px] max-w-[530px] w-full lg:block hidden"
           />
         </div>
       </div>
