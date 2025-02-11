@@ -47,7 +47,7 @@ const Dashboard = () => {
               className={`${
                 page === item.toLowerCase().replace(" ", "-") &&
                 "bg-white text-black"
-              } py-2 px-3 rounded-lg cursor-pointer hover:bg-white/50 transition-all duration-300 hover:text-black`}
+              } py-2 px-3 rounded-lg cursor-pointer hover:bg-gray-500 transition-all duration-300 hover:text-white`}
             >
               {item}
             </Link>
