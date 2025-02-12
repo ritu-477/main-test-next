@@ -71,7 +71,7 @@ const LogInForm = () => {
       <div className="max-w-[1597px] mx-auto lg:px-[27px] max-lg:px-[35px]">
         <div className="flex justify-end lg:gap-[120px] flex-wrap max-2xl:justify-center">
           <div className="lg:pt-5">
-            <Image src="/assets/images/webp/logo-image.webp" alt="page-logo" width={163} height={61.71} className="pointer-events-none pb-[138.9px] max-md:pb-[90px]" />
+            <Image src="/assets/images/webp/logo-image.webp" alt="page-logo" width={163} height={61.71} className="pointer-events-none pb-[138.9px] max-md:pb-[90px] !w-auto !h-auto object-cover" />
             <form noValidate onSubmit={handleSubmit} className="max-w-[456px]">
               <h2 className="text-3xl leading-custom-2xl font-semibold">Welcome Back</h2>
               <p className="text-sm leading-custom-xl text-custom-gray font-normal pb-[31px]">Welcome back! Please enter your details.</p>
@@ -80,17 +80,12 @@ const LogInForm = () => {
                   <label htmlFor={id} className="font-medium text-base leading-5 text-dark-black pb-[6px]">
                     {label}
                   </label>
-                  <input 
-                    type={type} 
-                    id={id} 
-                    value={formData[id as keyof typeof formData]} 
-                    placeholder={placeholder} 
-                    onChange={(e) => {
-                      setFormData({ ...formData, [id]: e.target.value });
-                      setErrors((prevErrors) => ({
-                        ...prevErrors, [id]: "",
-                      }));
-                    }}
+                  <input type={type} id={id} value={formData[id as keyof typeof formData]} placeholder={placeholder} onChange={(e) => {
+                    setFormData({ ...formData, [id]: e.target.value });
+                    setErrors((prevErrors) => ({
+                      ...prevErrors, [id]: "",
+                    }));
+                  }}
                     className="px-[14px] py-5 outline-none w-[456px] rounded-lg border border-light-gray max-md:w-[320px] shadow-[0_1px_2px_0_#1018280D] placeholder:text-custom-gray text-custom-gray"
                   />
                   {errors[id as keyof typeof errors] && <p className="text-red-500 text-sm mt-1">{errors[id as keyof typeof errors]}</p>}
@@ -99,17 +94,7 @@ const LogInForm = () => {
               {/* Remember Me & Forgot Password */}
               <div className="flex md:items-center justify-between pt-[18px] max-md:flex-col max-md:gap-[14px]">
                 <label htmlFor="remember" className="inline-flex items-center gap-3 cursor-pointer">
-                  <input 
-                    type="checkbox" 
-                    id="remember" 
-                    checked={remember} 
-                    onChange={(e) => {
-                      setRemember(e.target.checked);
-                      setErrors((prevErrors) => ({
-                        ...prevErrors,
-                        remember: "", 
-                      }));
-                    }}
+                  <input type="checkbox" id="remember" checked={remember} onChange={(e) => { setRemember(e.target.checked); setErrors((prevErrors) => ({ ...prevErrors, remember: "", })); }}
                     className="!size-5 !bg-white !rounded-md !border !border-solid !border-custom-white"
                   />
                   <span className="font-inter leading-6 text-custom-blue">Remember for 30 days</span>
@@ -119,13 +104,12 @@ const LogInForm = () => {
               {/* Show error if 'Remember Me' is not checked */}
               {errors.remember && <p className="text-red-500 text-sm mt-1">{errors.remember}</p>}
               {/* Submit Button */}
-              <button type="submit" className="pt-[9px] outline-none pb-[10px] text-sm leading-6 bg-dark-black text-white w-full mt-6 hover:bg-green-800 transition-all duration-300 rounded-[9px]">Sign In</button>
-              
+              <button type="submit" className="pt-[9px] outline-none pb-[10px] text-sm leading-6 bg-dark-black text-white w-full mt-6 hover:bg-green-400 transition-all duration-300 rounded-[9px]">Sign In</button>
               {/* Google Login */}
-              <button className="pt-[10px] pb-[11px] bg-white w-full mt-[6px] rounded-[9px] border border-custom-white flex items-center gap-[10px] justify-center">
+              <Link href="https://www.google.com/" target="blank" className="pt-[10px] pb-[11px] bg-white w-full mt-[6px] rounded-[9px] border border-custom-white flex items-center gap-[10px] justify-center hover:bg-green-400 transition-all duration-300">
                 <Image src="/assets/images/webp/google-icon.webp" alt="google-icon" width={20} height={20} className="mr-2" />
                 <p className="text-sm leading-5 text-custom-black font-medium">Sign in with Google</p>
-              </button>
+              </Link>
               {/* Sign Up Link */}
               <p className="font-inter lg:justify-center leading-6 flex gap-[10px] text-base md:text-center pt-[18px] text-custom-blue">
                 Don’t have an account?{" "}
