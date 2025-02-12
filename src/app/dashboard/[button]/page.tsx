@@ -1,16 +1,16 @@
 "use client";
-import { useRouter, useSearchParams } from "next/navigation";
+import { useRouter, useParams } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
-import CalendlyCustom from "./CalendlyCustom";
-import UploadImages from "./UploadImages";
-import QuestionOne from "./QuestionOne";
+import CalendlyCustom from "../../../components/dashboard/CalendlyCustom";
+import UploadImages from "../../../components/dashboard/UploadImages";
+import QuestionOne from "../../../components/dashboard/QuestionOne";
 import { QUESTION_LIST } from "@/utils/helper";
 
 const Dashboard = () => {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const page = searchParams.get("page");
+  const params = useParams();
+  const { button } = params;
 
   const handleLogout = () => {
     localStorage.removeItem("isAuthenticated");
@@ -39,17 +39,17 @@ const Dashboard = () => {
       >
         <div className="flex flex-col gap-2 relative">
           <h1 className="mb-3 text-center text-4xl font-semibold">Dashboard</h1>
-          {QUESTION_LIST.map((item, index) => (
+          {QUESTION_LIST.map((obj, index) => (
             <Link
-              href={`/dashboard?page=${item.toLowerCase().replace(" ", "-")}`}
+              href={`/dashboard/${obj.toLowerCase().replace(" ", "-")}`}
               key={index}
               onClick={() => setOpen(false)}
               className={`${
-                page === item.toLowerCase().replace(" ", "-") &&
+                button === obj.toLowerCase().replace(" ", "-") &&
                 "bg-white text-black"
               } py-2 px-3 rounded-lg cursor-pointer hover:bg-gray-500 transition-all duration-300 hover:text-white`}
             >
-              {item}
+              {obj}
             </Link>
           ))}
         </div>
@@ -86,11 +86,11 @@ const Dashboard = () => {
             Welcome to Dashboard
           </h1>
         </div>
-        {page === "button-1" ? (
-          <QuestionOne/>
-        ) : page === "button-2" ? (
+        {button === "button-1" ? (
+          <QuestionOne />
+        ) : button === "button-2" ? (
           <CalendlyCustom />
-        ) : page === "button-3" ? (
+        ) : button === "button-3" ? (
           <UploadImages />
         ) : null}
       </div>
